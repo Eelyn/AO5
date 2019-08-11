@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<h1 class="ml-2">Hi!</h1>
-<br><div class="container">
+<h1 class="ml-1 mb-5">Hi there!</h1>
+<!--<br><div class="container">
   <div class="row">
     <div class="col">
       <p>Please add the items required into your shopping basket:</p>
@@ -12,37 +12,60 @@
   </div>
 </div>
 <div class="itemList container">
-    <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-          Book
-        <span class="badge"><button (click)="addBook()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-          Music CD
-        <span class="badge"><button (click)="addMusic()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-          Chocolate Bar
-        <span class="badge"><button (click)="addChoc()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-          Imported box of chocolate
-        <span class="badge"><button (click)="addImpChoc()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-          Imported box of perfume
-        <span class="badge"><button (click)="addImpPerfume()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-          Perfume
-        <span class="badge"><button (click)="addPerfume()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-          Headache Pills
-        <span class="badge"><button (click)="addPill()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
-      </li>
-      <li class="col p-3" style="list-style-type: none">
-        <span class="badge float-right mr-4"><button (click)="submit()" type="button" class="btn btn-primary" style="background-color: black; color: white">Submit</button></span>
-      </li>
-    </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Book
+      <span class="badge"><button (click)="addBook()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Music CD
+      <span class="badge"><button (click)="addMusic()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Chocolate Bar
+      <span class="badge"><button (click)="addChoc()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Imported box of chocolate
+      <span class="badge"><button (click)="addImpChoc()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Imported box of perfume
+      <span class="badge"><button (click)="addImpPerfume()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Perfume
+      <span class="badge"><button (click)="addPerfume()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Headache Pills
+      <span class="badge"><button (click)="addPill()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Add to basket</button></span>
+    </li>
+    <li class="col p-3" style="list-style-type: none">
+      <span class="badge float-right mr-4"><button (click)="submit()" type="button" class="btn btn-primary" style="background-color: black; color: white">Submit</button></span>
+    </li>
+  </ul>
+</div>
+-->
+
+<!--
+  https://getbootstrap.com/docs/4.0/components/input-group/
+-->
+<label for="basic-url">Please enter the item and its price below to add to your shopping basket below</label>
+<p class="float-right">{{ total }}</p><i class="material-icons float-right mr-2">shopping_basket</i>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon3">Item</span>
+  </div>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [(ngModel)]="item">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">$</span>
+  </div>
+  <input type="text" class="form-control" aria-label="amount" [(ngModel)]="amount">
+</div>
+<div> 
+  <span class="badge float-right mr-2"><button (click)="submit()" type="button" class="btn btn-primary" style="background-color: black; color: white">Submit</button></span>
 </div>
