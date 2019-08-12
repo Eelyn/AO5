@@ -9,49 +9,55 @@ import { ShoppingBasketDto } from '../dto/ShoppingBasketDto';
 export class HomeComponent implements OnInit {
 
   public total: number;
+  public genReceipt: boolean;
   item: string;
   amount: number;
   shoppingBasket: Array<ShoppingBasketDto>;
+  basicTaxTotal: number;
+  importTaxTotal: number;
+  totalCost = 0;
+  basicTaxTotalString: string;
+  importTaxTotalString: string;
+  totalCostString: string;
 
   constructor() {}
 
   ngOnInit(): void {
+    //reset all values
     this.total=0;
     this.shoppingBasket = [];
-    let number = 0.86;
-    let result = (Math.ceil(number*20)/20).toFixed(2);
-    console.log(result);
+    this.item = '';
+    this.amount = null;
+    this.totalCost = 0;
+    this.basicTaxTotal = 0;
+    this.importTaxTotal = 0;    
+    this.genReceipt = false;
+    this.basicTaxTotalString = " ";
+    this.importTaxTotalString = " ";
+    this.totalCostString = " ";
   }
 
-  /*
-  addBook() {
-    this.total++;
+  processTotals() {
+    let basicTaxEligibility = this.item.toLowerCase().includes('music' || 'perfume');
+    let importTaxEligibility = this.item.toLowerCase().includes('import');
+
+    if(basicTaxEligibility) {
+      this.basicTaxTotal += (this.amount * 10/100);
+      if(importTaxEligibility) {
+        this.importTaxTotal += (this.amount * 5/100);
+      }
+    }
+
+    this.shoppingBasket.forEach(element => {
+        element.Price += this.totalCost;      
+    });
+
+    //round values
+    this.basicTaxTotalString = (Math.ceil(this.basicTaxTotal*20)/20).toFixed(2);
+    this.importTaxTotalString = (Math.ceil(this.importTaxTotal*20)/20).toFixed(2);
+    this.totalCostString = (Math.ceil(this.totalCost*20)/20).toFixed(2);
   }
 
-  addMusic() {
-    this.total++;
-  }
-
-  addChoc() {
-    this.total++;
-  }
-
-  addImpChoc() {
-    this.total++;
-  }
-
-  addImpPerfume() {
-    this.total++;
-  }
-
-  addPerfume() {
-    this.total++;
-  }
-
-  addPill() {
-    this.total++;
-  }
-*/
   submit() {
     if((this.amount != null) && (this.item != null)) {
       let newAddition = new ShoppingBasketDto();
@@ -59,12 +65,21 @@ export class HomeComponent implements OnInit {
       newAddition.Price = this.amount;
       this.shoppingBasket.push(newAddition);
 
-      let x = this.shoppingBasket[1].ItemName;
-      let y = this.shoppingBasket[1].Price;
-      console.log(x + ' ' + y);
+      this.processTotals();
+
+      //keep count of total added to shopping basket
       this.total++;
       this.item = '';
       this.amount = null;
+      this.genReceipt = false;
     }
+  }
+
+  generateReceipt() {
+    this.genReceipt = true;
+  }
+
+  reset() {
+    this.genReceipt = false;
   }
 }

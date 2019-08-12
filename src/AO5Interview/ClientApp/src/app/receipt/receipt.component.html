@@ -1,0 +1,74 @@
+<div class=" border border-secondary rounded d-flex align-items-center flex-column justify-content-center h-100">
+  <div class="mt-2">
+    <h4><u>Receipt</u></h4>
+  </div>
+  <div class="mt-3">
+    <div class="table" style="font-size: 0.8em">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Item</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th class="center">Qty</th>
+              <th class="right">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of shoppingBasket">
+              <td class="left strong">{{ item.ItemName }}</td>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <td class="center">1</td>
+              <td class="right">{{ item.Price | number:'0.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row" style="font-size: 0.8em">
+        <div class="col"></div>
+        <div class="col">
+        <table class="table table-clear">
+          <tbody>
+            <tr>
+              <td class="left">
+                <strong>Subtotal</strong>
+              </td>
+              <td class="right">${{ totalCostString }}</td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>Sales Tax (10%)</strong>
+              </td>
+              <td class="right">${{ basicTaxTotalString }}</td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>Import tax (5%)</strong>
+              </td>
+              <td class="right">${{ importTaxTotalString }}</td>
+            </tr>
+            <tr>
+              <td class="left">
+                <strong>Total</strong>
+              </td>
+            <td class="right">
+              <strong>$ {{ totalCost + basicTaxTotal + importTaxTotal }}</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>   
+</div>
